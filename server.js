@@ -25,6 +25,14 @@ app.get('/employees/:id', async (req, res) => {
     res.json(employees);
 });
 
+// http://localhost:3345/employees-by-city/London
+app.get('/employees-by-city/:city', async (req, res) => {
+	const city = req.params.city;
+    const employees = await qsql.getRecordsWithSql(
+        `SELECT EmployeeID, LastName, FirstName, BirthDate, City, Title FROM Employees WHERE City = '${city}'`
+    );
+    res.json(employees);
+});
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`);
