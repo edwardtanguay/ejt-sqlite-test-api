@@ -68,7 +68,8 @@ JOIN Territories AS t ON et.TerritoryID = t.TerritoryID
 WHERE e.EmployeeID = ${employeeId}`
     );
     const data = {
-        test: 'nnn'
+		employee: `${records[0].FirstName} ${records[0].LastName}`,
+		territories: records.map(m => m.territory)
     };
     res.json(data);
 });
