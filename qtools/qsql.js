@@ -3,7 +3,7 @@ import * as qsys from './qsys.js';
 
 //view and manage SQLite files on Windows/Mac/Linux with: https://sqlitebrowser.org/dl
 const absoluteDbPathAndFileName = qsys.buildSystemAbsolutePathAndFileName(
-	'src/data/site.sqlite'
+	'data/northwind_database.sqlite'
 );
 
 /**
