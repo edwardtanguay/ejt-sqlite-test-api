@@ -43,6 +43,15 @@ app.get('/employees-by-birth-year/:year', async (req, res) => {
     res.json(employees);
 });
 
+// http://localhost:3345/employees-search
+app.get('/employees-search', async (req, res) => {
+	// const searchText = req.params.year;
+	const employees = [];
+	// await qsql.getRecordsWithSql(
+	// 	`SELECT * FROM Employees WHERE Notes LIKE '%manager%' OR Title LIKE '%manager%'`
+    // );
+    res.json(employees);
+});
 
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`);
