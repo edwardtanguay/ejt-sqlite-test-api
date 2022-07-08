@@ -34,6 +34,16 @@ app.get('/employees-by-city/:city', async (req, res) => {
     res.json(employees);
 });
 
+// http://localhost:3345/employees-by-birth-year/1952
+app.get('/employees-by-birth-year/:year', async (req, res) => {
+	const year = req.params.year;
+	const employees = await qsql.getRecordsWithSql(
+		`SELECT EmployeeID, LastName, FirstName, BirthDate, City, Title FROM Employees WHERE substr(Birthdate,1,4)  = '${year}'`
+    );
+    res.json(employees);
+});
+
+
 app.listen(port, () => {
     console.log(`listening at http://localhost:${port}`);
 });
