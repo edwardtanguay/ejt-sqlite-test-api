@@ -1,5 +1,6 @@
 import express from 'express';
 import * as qsql from './qtools/qsql.js';
+import * as qfil from './qtools/qfil.js';
 
 const app = express();
 const port = 3345;
@@ -7,7 +8,8 @@ const port = 3345;
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send(`<h1>SQLite API</h1>`);
+    const indexContent = qfil.getFileAsStringBlock('views/index.html');
+    res.send(indexContent);
 });
 
 // http://localhost:3345/employees
@@ -45,21 +47,21 @@ app.get('/employees-by-birth-year/:year', async (req, res) => {
     res.json(employees);
 });
 
-// http://localhost:3345/employees-search
-app.get('/employees-search', async (req, res) => {
-    const searchText = req.body.searchText;
+// http://localhost:3345/employees-search/french
+app.get('/employees-search/:searchText', async (req, res) => {
+    const searchText = req.params.searchText;
     const employees = await qsql.getRecordsWithSql(
         `SELECT FirstName, LastName, Title, Notes FROM Employees WHERE Notes LIKE '%${searchText}%' OR Title LIKE '%${searchText}%'`
     );
     res.json(employees);
 });
 
-// http://localhost:3345/employee-territories/2
+// http://localhost:3345/employee-territories-by-employee/2
 // {
 //    "employee": "James Baldwin",
 //	  "territories": ['Westboro', '...', '...']
 // }
-app.get('/employee-territories/:employeeId', async (req, res) => {
+app.get('/employee-territories-by-employee/:employeeId', async (req, res) => {
     const employeeId = req.params.employeeId;
     const records = await qsql.getRecordsWithSql(
         `SELECT FirstName, LastName, TRIM(t.TerritoryDescription) AS territory FROM Employees AS e 
@@ -68,8 +70,8 @@ JOIN Territories AS t ON et.TerritoryID = t.TerritoryID
 WHERE e.EmployeeID = ${employeeId}`
     );
     const data = {
-		employee: `${records[0].FirstName} ${records[0].LastName}`,
-		territories: records.map(m => m.territory)
+        employee: `${records[0].FirstName} ${records[0].LastName}`,
+        territories: records.map((m) => m.territory)
     };
     res.json(data);
 });

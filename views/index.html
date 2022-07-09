@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible"
+		  content="IE=edge">
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0">
+	<title>SQLite API</title>
+	<style>
+		body {
+			background-color: #ccc;
+			font-family: sans-serif;
+			padding: 1rem;
+		}
+
+		h1 {
+			margin: 0;
+		}
+
+		a {
+			color: navy;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>SQLite API</h1>
+	<p>This API demonstrates using <a href="https://github.com/edwardtanguay/qtools">qtools</a> to create an API that
+		serves data from an SQLite database.</p>
+
+	<h2>Routes:</h2>
+	<ul>
+		<li><a href="http://localhost:3345/employees">http://localhost:3345/employees</a></li>
+		<li><a href="http://localhost:3345/employees/4">http://localhost:3345/employees/4</a></li>
+		<li><a href="http://localhost:3345/employees-by-city/London">http://localhost:3345/employees-by-city/London</a>
+		</li>
+		<li><a
+			   href="http://localhost:3345/employees-by-birth-year/1963">http://localhost:3345/employees-by-birth-year/1963</a>
+		</li>
+		<li><a href="http://localhost:3345/employees-search/french">http://localhost:3345/employees-search/french</a>
+		<li><a href="http://localhost:3345/employee-territories-by-employee/2">http://localhost:3345/employee-territories-by-employee/2</a>
+		</li>
+	</ul>
+</body>
+
+</html>
