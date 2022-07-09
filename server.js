@@ -5,8 +5,6 @@ import * as qfil from './qtools/qfil.js';
 const app = express();
 const port = 3345;
 
-app.use(express.json());
-
 app.get('/', (req, res) => {
     const indexContent = qfil.getFileAsStringBlock('views/index.html');
     res.send(indexContent);
