@@ -57,10 +57,6 @@ app.get('/employees-search/:searchText', async (req, res) => {
 });
 
 // http://localhost:3345/employee-territories-by-employee/2
-// {
-//    "employee": "James Baldwin",
-//	  "territories": ['Westboro', '...', '...']
-// }
 app.get('/employee-territories-by-employee/:employeeId', async (req, res) => {
     const employeeId = req.params.employeeId;
     const records = await qsql.getRecordsWithSql(
